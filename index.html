@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>For Nikita</title>
+</head>
+
+<body>
+  <section class="center-vh">
+    <div class="container">
+      <div class="form-container">
+        <div class="form-group">
+          <label for="theme">Тема:</label>
+          <select id="theme">
+            <option value="">Выберите задание .pdf</option>
+            <option value="1">Задание_1.pdf</option>
+            <option value="2">Задание_2.pdf</option>
+            <option value="3">Задание_3.pdf</option>
+            <option value="4">Задание_4.pdf</option>
+            <option value="5">Задание_5.pdf</option>
+            <option value="6">Задание_6.pdf</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="task">Номер задания:</label>
+          <input type="number" id="task" placeholder="Введите номер задания (например: 1)" min="1">
+        </div>
+
+        <button id="execute-btn">Выполнить задание</button>
+      </div>
+
+      <div class="result-container">
+        <h3 class="result-title">Результат:</h3>
+        <div class="result-content">
+          <div class="empty-result">Выберите тему и введите номер задания, затем нажмите "Выполнить задание"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const taskLibrary = {
+      "1": {
+        "1": () => "Результат темы 1, задания 1",
+        "2": () => {
+          console.log("Выполняю тему 1, задание 2");
+          return "Тема 1, задание 2 выполнено";
+        },
+        "3": () => {
+          const x = 5;
+          const y = 10;
+          return `Сумма: ${x + y}`;
+        }
+      },
+      "2": {
+        "1": () => "Результат темы 2, задания 1",
+        "2": () => {
+          const numbers = [1, 2, 3, 4, 5];
+          const sum = numbers.reduce((a, b) => a + b, 0);
+          return `Сумма массива: ${sum}`;
+        }
+      },
+      "3": {
+        "1": () => "Простая функция для темы 3",
+        "2": function () {
+          return "Функция с контекстом";
+        }
+      },
+      "4": {
+        "1": () => "Тема 4, задание 1: Работа с датами",
+        "2": () => `Текущий год: ${new Date().getFullYear()}`
+      },
+      "5": {
+        "1": () => "Тема 5, задание 1: Строки",
+        "3": () => "Приветствие".toUpperCase()
+      },
+      "6": {
+        "1": () => "Тема 6, задание 1: Математика",
+        "2": () => `Случайное число: ${Math.random().toFixed(2)}`
+      }
+    };
+
+    document.getElementById('execute-btn').addEventListener('click', function () {
+      const theme = document.getElementById('theme').value;
+      const task = document.getElementById('task').value;
+      const resultContent = document.querySelector('.result-content');
+
+      if (!theme) {
+        alert('Ошибка: Выберите тему!');
+        return;
+      }
+
+      if (!task) {
+        alert('Ошибка: Введите номер задания!');
+        return;
+      }
+
+      if (!taskLibrary[theme]) {
+        alert(`Ошибка: Темы ${theme} нет в библиотеке заданий!`);
+        return;
+      }
+
+      if (!taskLibrary[theme][task]) {
+        alert(`Ошибка: Задания ${task} нет в теме ${theme}!`);
+        return;
+      }
+
+      try {
+        const result = taskLibrary[theme][task]();
+
+        resultContent.innerHTML = `
+          <div class="result-output">
+            <h3>Задание выполнено успешно!</h3>
+            <p><strong>Тема:</strong> ${theme}</p>
+            <p><strong>Задание:</strong> ${task}</p>
+            <hr>
+            <p><strong>Результат выполнения:</strong></p>
+            <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px;">${result}</pre>
+            <small>Время выполнения: ${new Date().toLocaleTimeString()}</small>
+          </div>
+        `;
+      } catch (error) {
+        resultContent.innerHTML = `
+          <div class="error">
+            <h3>Ошибка при выполнении задания!</h3>
+            <p><strong>Тема:</strong> ${theme}</p>
+            <p><strong>Задание:</strong> ${task}</p>
+            <hr>
+            <p><strong>Сообщение об ошибке:</strong></p>
+            <pre style="background: #ffcdd2; padding: 10px; border-radius: 5px;">${error.message}</pre>
+          </div>
+        `;
+      }
+    });
+
+    document.getElementById('theme').addEventListener('change', function () {
+      const taskInput = document.getElementById('task');
+      if (this.value) {
+        taskInput.disabled = false;
+        taskInput.focus();
+      } else {
+        taskInput.disabled = true;
+      }
+    });
+
+    document.getElementById('task').disabled = true;
+  </script>
+</body>
+
+</html>
