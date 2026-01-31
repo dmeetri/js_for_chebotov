@@ -31,4 +31,16 @@ function ch1_task4() {
   // и что мне будет? 5?
 }
 
-function ch1_task5() {}
+function ch1_task5() {
+  alert("Делаем обрезку строки или, сами придумайте. ОК нажми это перетнзия");
+
+  let userString = prompt("Сюда пиши текст").trim();
+  let startObrezanie = parseInt(prompt("откда начинаем резать?").trim());
+  let countObrezanie = parseInt(prompt("сколько режем?").trim());
+
+  return userString.slice(startObrezanie, startObrezanie + countObrezanie);
+}
+
+function ch1_task6() {}
+
+function ch1_task7() {}
