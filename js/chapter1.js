@@ -21,3 +21,14 @@ function ch1_task3() {
   alert(userName);
   return userName;
 }
+
+function ch1_task4() {
+  let userAge = prompt("Возраст сюда йоу").trim();
+  return parseInt(userAge);
+
+  //Я знаю про унарный способ +"123" и про Number()
+  // но я использу parceInt потому что вот мне он понравился
+  // и что мне будет? 5?
+}
+
+function ch1_task5() {}
