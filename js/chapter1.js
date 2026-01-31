@@ -39,6 +39,8 @@ function ch1_task5() {
   let countObrezanie = parseInt(prompt("сколько режем?").trim());
 
   return userString.slice(startObrezanie, startObrezanie + countObrezanie);
+  //я крч не понял до конца суть задания, но сейчас скрипт как бы вырезает нужную область с того момента как начали и докуда закончили
+  // пример - 1234567890 > с 3 по 5 > ответ > 45678
 }
 
 function ch1_task6() {}
