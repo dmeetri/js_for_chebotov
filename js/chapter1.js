@@ -57,5 +57,17 @@ function ch1_task6() {
   return userText.slice(index + 1).join(" ");
 }
 
-function ch1_task7() {}
+function ch1_task7() {
+  const jsdescwiki =
+    "Вам дан следующий текст, взятый из Википедии: 'JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией спецификации ECMAScript. JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.'";
+
+  jsdescwiki = jsdescwiki.slice(1, jsdescwiki.length());
+  jsdescwiki = jsdescwiki.replaceAll("a", "A");
+  jsdescwiki = jsdescwiki.replaceAll(" ", "");
+  jsdescwiki = jsdescwiki.repeat(3);
+
+  alert(`Индекс центра: ${jsdescwiki.length / 2}`);
+  return jsdescwiki;
+}
+
 //крч мне было очень скучно это писать так что я развлекался как мог
